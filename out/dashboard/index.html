@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token Launch Radar — pre-token protocols ranked by implied value</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="blip" aria-hidden="true"></span>
+    <div>
+      <h1>Token Launch Radar</h1>
+      <p class="tagline">Pre-token protocols ranked by what their token would be worth if the record stayed as it is — and exactly how to farm each one.</p>
+    </div>
+  </div>
+  <div class="stats" id="stats" aria-label="Board statistics"></div>
+</header>
+
+<section class="model-note" id="model-note" aria-label="How implied value is derived"></section>
+
+<main>
+  <div class="controls" role="search">
+    <label class="ctl grow">Search
+      <input id="q" type="search" placeholder="Protocol, category or chain…" autocomplete="off">
+    </label>
+    <label class="ctl">Category
+      <select id="category"><option value="">All categories</option></select>
+    </label>
+    <label class="ctl">Chain
+      <select id="chain"><option value="">All chains</option></select>
+    </label>
+    <label class="ctl">Sort by
+      <select id="sort">
+        <option value="implied">Implied value</option>
+        <option value="tvl">TVL</option>
+        <option value="growth">7-day growth</option>
+        <option value="age">Time without a token</option>
+        <option value="multiple">Category multiple</option>
+      </select>
+    </label>
+    <label class="ctl check">
+      <input id="watchonly" type="checkbox"> Watchlist only (≥ $50M TVL, no token)
+    </label>
+  </div>
+
+  <div id="view-board">
+    <table class="board" id="board">
+      <thead>
+        <tr>
+          <th class="num">#</th><th>Protocol</th><th>Category</th><th>Chains</th>
+          <th class="num">TVL</th><th class="num">7d</th><th class="num">No token for</th>
+          <th class="num">Multiple</th><th class="num">Implied value</th><th></th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+    <p class="empty" id="empty" hidden>No protocol matches those filters. Loosen the search or clear a filter.</p>
+  </div>
+
+  <article id="view-detail" hidden></article>
+
+  <section class="live" id="live" aria-label="Tokens that already trade"></section>
+</main>
+
+<footer>
+  <p>Implied value is this radar's own model output, derived only from the snapshot's figures (TVL, 7-day change, listing date, chains and the market-cap/TVL ratios of tokenised peers in the same category). It is not a prediction that a token will launch, or when. Data: DefiLlama snapshot, <span id="asof"></span>. A protocol shown here records no token in that snapshot.</p>
+</footer>
+
+<script src="../data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
